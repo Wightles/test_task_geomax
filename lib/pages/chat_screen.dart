@@ -27,12 +27,117 @@ class ChatScreen extends StatelessWidget {
             size: 14,
           ),
         ),
+        title: Container(
+          width: 30,
+          height: 30,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white,
+              width: 1,
+            ),
+          ),
+          child: ClipOval(
+            child: Image.asset(
+              'assets/images/test4.jpg',
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  color: Colors.grey[600],
+                  child: const Icon(
+                    Icons.person,
+                    color: Colors.white,
+                    size: 16,
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+        actions: [
+          CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: () {
+            },
+            child: const Icon(
+              CupertinoIcons.ellipsis_vertical,
+              color: Colors.white,
+              size: 18, 
+            ),
+          ),
+        ],
       ),
       body: Column(
         children: [
           Container(
             height: 150 - kToolbarHeight,
             color: Colors.grey[300],
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 32, 
+                  left: 0, 
+                  right: 0, 
+                  child: Container(
+                    height: 39,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF7446AC),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 17),
+                          child: Container(
+                            width: 20, 
+                            height: 20, 
+                            child: Image.asset(
+                              'assets/images/test15.png',
+                              fit: BoxFit.contain,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  color: Colors.transparent,
+                                  child: const Icon(
+                                    Icons.image,
+                                    color: Colors.white,
+                                    size: 10, 
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 5), 
+                        const Text(
+                          '2 общих соблазна',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontStyle: FontStyle.italic,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5), 
+                          child: CupertinoButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
+                            },
+                            child: const Icon(
+                              CupertinoIcons.clear,
+                              color: Colors.white,
+                              size: 14,
+                              weight: 300,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Expanded(
             child: Container(

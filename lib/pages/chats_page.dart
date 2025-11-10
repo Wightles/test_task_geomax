@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test_task_geomax/custom_bottom_navigation.dart';
 import '../widgets/chat_item.dart';
 import 'chat_screen.dart';
+import 'package:test_task_geomax/custom_bottom_navigation.dart'; 
 
 class ChatsPage extends StatelessWidget {
   const ChatsPage({super.key});
@@ -15,6 +17,212 @@ class ChatsPage extends StatelessWidget {
       ),
     );
   }
+
+void _showImageModal(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (BuildContext context) {
+      return BackdropFilter(
+        filter: ColorFilter.mode(
+          Colors.black.withOpacity(0.5),
+          BlendMode.srcOver,
+        ),
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.5,
+          decoration: const BoxDecoration(
+            color: Color(0xFF0D1333),
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                top: 21,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: Image.asset(
+                      'assets/images/test13.png',
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.grey[600],
+                          child: const Icon(
+                            Icons.image,
+                            color: Colors.white,
+                            size: 50,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 21 + 70,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: RichText(
+                    text: const TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Режим ',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'инкогнито',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' на 24 часа',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 21 + 100,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: RichText(
+                      textAlign: TextAlign.justify,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Стань невидимкой в ленте и чатах, скрой\n',
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 14,
+                              height: 1.4,
+                            ),
+                          ),
+                          TextSpan(
+                            text: 'объявление и наслаждайся <Space> незамеченным',
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 14,
+                              height: 1.4,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 21 + 140,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Image.asset(
+                      'assets/images/test14.png',
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.grey[600],
+                          child: const Icon(
+                            Icons.image,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 21 + 250,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Container(
+                    width: 343,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFAA044A), 
+                        foregroundColor: Colors.white, 
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                        elevation: 0,
+                      ),
+                      child: const Text(
+                        'Купить',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const Positioned(
+                bottom: 16, 
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Text(
+                    'УСЛОВИЯ И ПОЛОЖЕНИЯ',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 16,
+                right: 16,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    width: 20,
+                    height: 20,
+                    child: const Icon(
+                      Icons.close,
+                      color: Colors.grey,
+                      size: 20,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -62,30 +270,37 @@ class ChatsPage extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 12),
-                            Container(
-                              width: 40,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 81, 80, 80),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                child: Container(
-                                  width: 31,
-                                  height: 21,
-                                  child: Image.asset(
-                                    'assets/images/test1.png',
-                                    fit: BoxFit.contain,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Container(
-                                        color: Colors.grey[600],
-                                        child: const Icon(
-                                          Icons.person,
-                                          color: Colors.white,
-                                          size: 8,
-                                        ),
-                                      );
-                                    },
+                            GestureDetector(
+                              onTap: () => _showImageModal(context),
+                              child: Container(
+                                width: 40,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  color: const Color.fromARGB(255, 81, 80, 80),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Center(
+                                  child: Container(
+                                    width: 31,
+                                    height: 21,
+                                    child: GestureDetector(
+                                      onTap: () => _showImageModal(context),
+                                      child: Image.asset(
+                                        'assets/images/test1.png',
+                                        fit: BoxFit.contain,
+                                        errorBuilder:
+                                            (context, error, stackTrace) {
+                                          return Container(
+                                            color: Colors.grey[600],
+                                            child: const Icon(
+                                              Icons.person,
+                                              color: Colors.white,
+                                              size: 8,
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -110,8 +325,7 @@ class ChatsPage extends StatelessWidget {
                             showDot: true,
                             showTime: false,
                             isLikesStyle: true,
-                            onTap: () {
-                            },
+                            onTap: () {},
                           ),
                           ChatItem(
                             time: '23 ч 43 мин',
@@ -166,6 +380,8 @@ class ChatsPage extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar:
+          const CustomBottomNavigation(), 
     );
   }
 }
